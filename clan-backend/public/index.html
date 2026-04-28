@@ -58,15 +58,15 @@ animation: starsFloat 20s linear infinite;
 }
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,8,10,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(–border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;}
-.nav-brand{font-family:‘Cinzel’,serif;font-weight:900;font-size:16px;color:var(–gold2);letter-spacing:3px;display:flex;align-items:center;gap:10px;}
-.nav-brand img{width:28px;height:28px;object-fit:contain;}
-.nav-tag{font-family:‘Share Tech Mono’,monospace;font-size:10px;color:var(–text2);margin-left:8px;}
-.nav-links{display:flex;gap:20px;list-style:none;align-items:center;}
-.nav-links a{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(–text2);text-decoration:none;transition:color 0.2s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,8,10,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(–border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:60px;gap:12px;}
+.nav-left{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.nav-shield{width:28px;height:28px;object-fit:contain;flex-shrink:0;}
+.nav-brand{font-family:‘Cinzel’,serif;font-weight:900;font-size:14px;color:var(–gold2);letter-spacing:2px;white-space:nowrap;}
+.nav-links{display:flex;gap:12px;list-style:none;align-items:center;flex-wrap:nowrap;}
+.nav-links a{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(–text2);text-decoration:none;transition:color 0.2s;white-space:nowrap;}
 .nav-links a:hover,.nav-links a.active{color:var(–gold2);}
-.nav-discord{background:var(–discord);color:#fff!important;padding:6px 14px;font-size:11px!important;font-weight:700!important;letter-spacing:1px!important;border-radius:4px;display:flex!important;align-items:center;gap:6px;transition:opacity 0.2s, transform 0.2s!important;}
-.nav-discord:hover{opacity:0.85;transform:translateY(-1px)!important;color:#fff!important;}
+.nav-discord{background:var(–discord);color:#fff!important;padding:5px 10px;font-size:10px!important;font-weight:700!important;letter-spacing:1px!important;border-radius:4px;display:flex!important;align-items:center;gap:5px;transition:opacity 0.2s!important;}
+.nav-discord:hover{opacity:0.85!important;color:#fff!important;}
 
 /* LOADER */
 #loader{position:fixed;inset:0;z-index:200;background:var(–dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 0.5s;}
@@ -86,8 +86,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,8,10,0.95)
 .hero-shield{width:120px;height:120px;object-fit:contain;animation:floatShield 4s ease-in-out infinite, fadeDown 0.8s ease both;filter:drop-shadow(0 0 30px rgba(201,162,39,0.5));}
 @keyframes floatShield{0%,100%{transform:translateY(0px);}50%{transform:translateY(-12px);}}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,0.1);border:1px solid rgba(201,162,39,0.3);padding:6px 16px;font-family:‘Share Tech Mono’,monospace;font-size:11px;color:var(–gold);letter-spacing:3px;margin-bottom:24px;animation:fadeDown 0.6s 0.1s ease both;}
-.hero-title{font-family:‘Cinzel’,serif;font-size:clamp(44px,9vw,88px);font-weight:900;line-height:0.9;letter-spacing:-2px;color:#fff;animation:fadeUp 0.7s 0.2s ease both;}
-.hero-title span{display:block;background:linear-gradient(135deg,var(–gold),var(–gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-title{font-family:‘Cinzel’,serif;font-size:clamp(32px,7vw,80px);font-weight:900;line-height:1;letter-spacing:-1px;color:#fff;animation:fadeUp 0.7s 0.2s ease both;}
+.hero-title .clan-name{display:block;background:linear-gradient(135deg,var(–gold),var(–gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:clamp(36px,8vw,88px);}
+.hero-title .clan-tag{display:block;font-size:clamp(18px,3vw,32px);color:var(–text2);font-weight:400;letter-spacing:2px;margin-top:6px;}
 .hero-desc{margin-top:24px;font-size:18px;font-weight:300;color:var(–text2);letter-spacing:1px;animation:fadeUp 0.7s 0.3s ease both;}
 .hero-stats{display:flex;justify-content:center;margin-top:48px;animation:fadeUp 0.7s 0.4s ease both;flex-wrap:wrap;}
 .hero-stat{padding:20px 36px;border:1px solid var(–border);border-right:none;background:rgba(13,15,20,0.8);}
@@ -95,11 +96,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,8,10,0.95)
 .hero-stat-num{font-family:‘Cinzel’,serif;font-size:32px;font-weight:700;color:var(–gold2);line-height:1;}
 .hero-stat-label{font-size:10px;font-weight:600;color:var(–text2);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
 .hero-cta{margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.7s 0.5s ease both;}
-.btn-primary{background:linear-gradient(135deg,var(–gold),#a07820);color:#000;font-family:‘Barlow Condensed’,sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s,transform 0.2s;}
+.btn-primary{background:linear-gradient(135deg,var(–gold),#a07820);color:#000;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s,transform 0.2s;}
 .btn-primary:hover{opacity:0.85;transform:translateY(-1px);}
-.btn-secondary{background:transparent;color:var(–text);font-family:‘Barlow Condensed’,sans-serif;font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:1px solid var(–border2);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s;}
-.btn-secondary:hover{border-color:var(–gold);color:var(–gold);}
-.btn-discord-hero{background:var(–discord);color:#fff;font-family:‘Barlow Condensed’,sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border-radius:4px;transition:opacity 0.2s,transform 0.2s;}
+.btn-secondary{background:rgba(255,255,255,0.05);color:#fff;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:1px solid var(–border2);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s,background 0.2s;}
+.btn-secondary:hover{border-color:var(–gold);color:var(–gold);background:rgba(201,162,39,0.05);}
+.btn-discord-hero{background:var(–discord);color:#fff;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border-radius:4px;transition:opacity 0.2s,transform 0.2s;}
 .btn-discord-hero:hover{opacity:0.85;transform:translateY(-1px);}
 
 /* SECTIONS */
@@ -199,12 +200,14 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:2
 ::-webkit-scrollbar-thumb{background:var(–border2);border-radius:3px;}
 
 @media(max-width:600px){
-nav{padding:0 16px;}
-.nav-links{gap:12px;}
-.nav-links a{font-size:10px;}
+nav{padding:0 10px;}
+.nav-links{gap:6px;}
+.nav-links a{font-size:9px;letter-spacing:0;}
 .nav-discord span{display:none;}
+.nav-brand{font-size:12px;}
 .wrap{padding:60px 16px;}
-.hero-stat{padding:14px 20px;}
+.hero-stat{padding:14px 14px;}
+.hero-shield{width:90px;height:90px;}
 .war-card{grid-template-columns:1fr;gap:16px;}
 .discord-section{padding:40px 20px;}
 }
@@ -222,10 +225,9 @@ nav{padding:0 16px;}
 <div id="error-banner"></div>
 
 <nav>
-  <div style="display:flex;align-items:center;">
-    <img id="nav-shield" style="width:28px;height:28px;object-fit:contain;margin-right:10px;" alt="Escudo">
-    <span class="nav-brand" id="nav-name">⚔ Clan</span>
-    <span class="nav-tag">#2CR9U8VCO</span>
+  <div class="nav-left">
+    <img id="nav-shield" class="nav-shield" alt="Escudo">
+    <span class="nav-brand" id="nav-name">Clan</span>
   </div>
   <ul class="nav-links">
     <li><a href="#miembros">Miembros</a></li>
@@ -246,8 +248,8 @@ nav{padding:0 16px;}
     <img id="hero-shield" class="hero-shield" alt="Escudo del Clan">
     <div class="hero-badge" id="hero-badge">⚡ CARGANDO...</div>
     <h1 class="hero-title">
-      <span id="hero-name">El Clan</span>
-      #2CR9U8VCO
+      <span class="clan-name" id="hero-name">El Clan</span>
+      <span class="clan-tag">#2CR9U8VCO</span>
     </h1>
     <p class="hero-desc" id="hero-desc">Clan competitivo · Participación obligatoria</p>
     <div class="hero-stats">
@@ -395,7 +397,7 @@ async function apiFetch(path) {
 
 function renderClan(data) {
   document.getElementById('hero-name').textContent = data.name;
-  document.getElementById('nav-name').textContent = '⚔ ' + data.name;
+  document.getElementById('nav-name').textContent = data.name;
   document.getElementById('hero-badge').textContent = `⚡ NIVEL ${data.clanLevel} · ${data.members}/50 MIEMBROS`;
   document.getElementById('hero-desc').textContent = data.description || 'Clan competitivo · Participación obligatoria';
   document.getElementById('stat-members').textContent = `${data.members}/50`;
