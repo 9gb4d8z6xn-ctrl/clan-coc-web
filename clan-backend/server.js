@@ -59,6 +59,14 @@ https.get('https://api.ipify.org?format=json', (res) => {
     console.log('🌐 IP PUBLICA DE RENDER:', ip);
   });
 }).on('error', (e) => console.log('Error obteniendo IP:', e.message));
+const server = app.listen(PORT, () => console.log(`Servidor clan activo en puerto ${PORT}`));
 
-app.listen(PORT, () => console.log(`Servidor clan activo en puerto ${PORT}`));
-app.listen(PORT, () => console.log(`Servidor clan activo en puerto ${PORT}`));
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.log(`Puerto ${PORT} ocupado, reintentando...`);
+    setTimeout(() => {
+      server.close();
+      server.listen(PORT);
+    }, 3000);
+  }
+});
