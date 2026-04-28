@@ -49,5 +49,16 @@ app.get('/api/capital', async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+// Obtener IP pública del servidor
+const https = require('https');
+https.get('https://api.ipify.org?format=json', (res) => {
+  let data = '';
+  res.on('data', chunk => data += chunk);
+  res.on('end', () => {
+    const ip = JSON.parse(data).ip;
+    console.log('🌐 IP PUBLICA DE RENDER:', ip);
+  });
+}).on('error', (e) => console.log('Error obteniendo IP:', e.message));
 
+app.listen(PORT, () => console.log(`Servidor clan activo en puerto ${PORT}`));
 app.listen(PORT, () => console.log(`Servidor clan activo en puerto ${PORT}`));
