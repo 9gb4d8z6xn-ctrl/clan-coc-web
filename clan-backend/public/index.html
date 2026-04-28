@@ -83,30 +83,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,8,10,0.97)
 /* HERO */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 20px 40px;}
 .hero-inner{display:flex;flex-direction:column;align-items:center;}
-.hero-shield{width:120px;height:120px;object-fit:contain;animation:floatShield 4s ease-in-out infinite, fadeDown 0.8s ease both;filter:drop-shadow(0 0 30px rgba(201,162,39,0.5));}
-@keyframes floatShield{0%,100%{transform:translateY(0px);}50%{transform:translateY(-12px);}}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,0.1);border:1px solid rgba(201,162,39,0.3);padding:6px 16px;font-family:‘Share Tech Mono’,monospace;font-size:11px;color:var(–gold);letter-spacing:3px;margin-bottom:24px;animation:fadeDown 0.6s 0.1s ease both;}
-.hero-title{font-family:‘Cinzel’,serif;font-size:clamp(32px,7vw,80px);font-weight:900;line-height:1;letter-spacing:-1px;color:#fff;animation:fadeUp 0.7s 0.2s ease both;}
-.hero-title .clan-name{display:block;background:linear-gradient(135deg,var(–gold),var(–gold3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:clamp(36px,8vw,88px);}
-.hero-title .clan-tag{display:block;font-size:clamp(18px,3vw,32px);color:var(–text2);font-weight:400;letter-spacing:2px;margin-top:6px;}
-.hero-desc{margin-top:24px;font-size:18px;font-weight:300;color:var(–text2);letter-spacing:1px;animation:fadeUp 0.7s 0.3s ease both;}
-.hero-stats{display:flex;justify-content:center;margin-top:48px;animation:fadeUp 0.7s 0.4s ease both;flex-wrap:wrap;}
-.hero-stat{padding:20px 36px;border:1px solid var(–border);border-right:none;background:rgba(13,15,20,0.8);}
-.hero-stat:last-child{border-right:1px solid var(–border);}
-.hero-stat-num{font-family:‘Cinzel’,serif;font-size:32px;font-weight:700;color:var(–gold2);line-height:1;}
-.hero-stat-label{font-size:10px;font-weight:600;color:var(–text2);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
-.hero-cta{margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.7s 0.5s ease both;}
-.btn-primary{background:linear-gradient(135deg,var(–gold),#a07820);color:#000;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s,transform 0.2s;}
-.btn-primary:hover{opacity:0.85;transform:translateY(-1px);}
-.btn-secondary{background:rgba(255,255,255,0.05);color:#fff;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:14px 32px;border:1px solid var(–border2);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s,background 0.2s;}
-.btn-secondary:hover{border-color:var(–gold);color:var(–gold);background:rgba(201,162,39,0.05);}
-.btn-discord-hero{background:var(–discord);color:#fff;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border-radius:4px;transition:opacity 0.2s,transform 0.2s;}
-.btn-discord-hero:hover{opacity:0.85;transform:translateY(-1px);}
+.hero-shield{width:160px;height:160px;object-fit:contain;animation:floatShield 4s ease-in-out infinite, fadeDown 0.8s ease both;filter:drop-shadow(0 0 40px rgba(201,162,39,0.6));margin-bottom:8px;}
+@keyframes floatShield{0%,100%{transform:translateY(0px);}50%{transform:translateY(-14px);}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.4);padding:6px 18px;font-family:‘Share Tech Mono’,monospace;font-size:11px;color:var(–gold2);letter-spacing:3px;margin-bottom:20px;animation:fadeDown 0.6s 0.1s ease both;}
+.hero-title{font-family:‘Cinzel’,serif;font-weight:900;line-height:1.05;color:#fff;animation:fadeUp 0.7s 0.2s ease both;margin-bottom:4px;}
+.hero-title .clan-name{display:block;background:linear-gradient(135deg,#fff 30%,var(–gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:clamp(42px,10vw,96px);letter-spacing:-1px;}
+.hero-title .clan-tag{display:block;font-family:‘Share Tech Mono’,monospace;font-size:clamp(14px,2.5vw,20px);color:var(–gold);font-weight:400;letter-spacing:4px;margin-top:10px;}
+.hero-desc{margin-top:20px;font-size:17px;font-weight:400;color:#a0b0c0;letter-spacing:0.5px;animation:fadeUp 0.7s 0.3s ease both;max-width:500px;}
+.hero-stats{display:flex;justify-content:center;margin-top:40px;animation:fadeUp 0.7s 0.4s ease both;flex-wrap:wrap;}
+.hero-stat{padding:20px 32px;border:1px solid rgba(201,162,39,0.2);border-right:none;background:rgba(13,15,20,0.85);}
+.hero-stat:last-child{border-right:1px solid rgba(201,162,39,0.2);}
+.hero-stat-num{font-family:‘Cinzel’,serif;font-size:30px;font-weight:700;color:var(–gold2);line-height:1;}
+.hero-stat-label{font-size:10px;font-weight:700;color:#8a9aaa;letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+.hero-cta{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.7s 0.5s ease both;}
+.btn-primary{background:linear-gradient(135deg,var(–gold2),var(–gold));color:#000;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:900;letter-spacing:3px;text-transform:uppercase;padding:15px 34px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity 0.2s,transform 0.2s;box-shadow:0 4px 20px rgba(201,162,39,0.3);}
+.btn-primary:hover{opacity:0.88;transform:translateY(-2px);}
+.btn-secondary{background:rgba(255,255,255,0.08);color:#ffffff;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:15px 34px;border:1px solid rgba(255,255,255,0.25);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s,background 0.2s;}
+.btn-secondary:hover{border-color:var(–gold2);color:var(–gold2);background:rgba(201,162,39,0.08);}
+.btn-discord-hero{background:var(–discord);color:#fff;font-family:‘Barlow Condensed’,sans-serif;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:15px 34px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border-radius:4px;transition:opacity 0.2s,transform 0.2s;box-shadow:0 4px 20px rgba(88,101,242,0.3);}
+.btn-discord-hero:hover{opacity:0.88;transform:translateY(-2px);}
 
 /* SECTIONS */
 .wrap{position:relative;z-index:1;padding:80px 40px;max-width:1100px;margin:0 auto;}
-.section-label{font-family:‘Share Tech Mono’,monospace;font-size:10px;color:var(–gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;}
-.section-title{font-family:‘Cinzel’,serif;font-size:clamp(22px,4vw,38px);font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:36px;}
+.section-label{font-family:‘Share Tech Mono’,monospace;font-size:10px;color:var(–gold2);letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;}
+.section-title{font-family:‘Cinzel’,serif;font-size:clamp(22px,4vw,38px);font-weight:700;color:#ffffff;letter-spacing:1px;margin-bottom:36px;}
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(–border2),transparent);margin:0 40px;}
 
 /* DISCORD SECTION */
@@ -125,8 +125,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,8,10,0.97)
 .member-rank{font-family:‘Share Tech Mono’,monospace;font-size:11px;color:var(–text2);width:22px;text-align:right;flex-shrink:0;}
 .member-th{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:‘Cinzel’,serif;font-size:10px;font-weight:700;flex-shrink:0;}
 .member-info{flex:1;min-width:0;}
-.member-name{font-size:14px;font-weight:600;color:#e8edf2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.member-role{font-size:11px;color:var(–text2);letter-spacing:1px;margin-top:1px;}
+.member-name{font-size:14px;font-weight:700;color:#e8f0f8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.member-role{font-size:11px;color:#8a9aaa;letter-spacing:1px;margin-top:1px;}
 .role-lider{color:var(–red2)!important;}
 .role-colider{color:var(–gold)!important;}
 .role-veterano{color:var(–blue2)!important;}
@@ -178,8 +178,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,8,10,0.97)
 .norma-num{font-family:‘Cinzel’,serif;font-size:30px;font-weight:900;color:rgba(201,162,39,0.12);line-height:1;margin-bottom:8px;}
 .norma-card.danger .norma-num{color:rgba(192,57,43,0.15);}
 .norma-title{font-size:13px;font-weight:700;color:var(–gold2);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
-.norma-card.danger .norma-title{color:var(–red2);}
-.norma-desc{font-size:13px;font-weight:400;color:var(–text2);line-height:1.5;}
+.norma-card.danger .norma-title{color:#ff6b6b;}
+.norma-desc{font-size:14px;font-weight:500;color:#c0ccd8;line-height:1.5;}
 
 /* FOOTER */
 footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:28px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
