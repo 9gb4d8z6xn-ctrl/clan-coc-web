@@ -5,7 +5,7 @@ const fetch = require(‘node-fetch’);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const TOKEN = process.env.COC_TOKEN || ‘eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjBhZWQxMDAyLTY4MmQtNDViMC1hYzY3LWZlZTA5NzBlNGRmMCIsImlhdCI6MTc3NzM1OTY0OCwic3ViIjoiZGV2ZWxvcGVyLzQ3ZDkxNWZlLWI4MzMtZGRjOC01MWVhLTZiNDg4ODA5ZDIzMCIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjkwLjE3My4xNDQuMiJdLCJ0eXBlIjoiY2xpZW50In1dfQ.4iWP9Yru6LzKtsurrzZKCDJQ05iCQPA_2GoAUAJRaY8yz3yedfMXsyEzwtdzNMUQfZ9YTovOjDI_cyJnMejstw’;
+const TOKEN = process.env.COC_TOKEN || ‘’;
 const CLAN_TAG = ‘%232CR9U8VCO’;
 const COC_BASE = ‘https://api.clashofclans.com/v1’;
 
