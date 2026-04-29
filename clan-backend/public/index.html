@@ -246,7 +246,6 @@ nav{padding:0 12px;height:56px;}
   </div>
   <ul class="nav-links">
     <li><a href="#miembros">Miembros</a></li>
-    <li><a href="#donaciones">Donaciones</a></li>
     <li><a href="#guerra">Guerra</a></li>
     <li><a href="#capital">Capital</a></li>
     <li><a href="#normas">Normas</a></li>
@@ -390,8 +389,28 @@ nav{padding:0 12px;height:56px;}
 
 <div class="divider"></div>
 
-<!-- CAPITAL -->
+<!-- HISTORIAL GUERRAS -->
 
+<section style="position:relative;z-index:1;background:linear-gradient(135deg,rgba(192,57,43,0.05),rgba(192,57,43,0.01));border-top:1px solid rgba(192,57,43,0.12);border-bottom:1px solid rgba(192,57,43,0.12);" id="historial">
+  <div class="wrap" style="padding-bottom:0;">
+    <div class="reveal">
+      <div class="section-label" style="color:#e74c3c;">// HISTORIAL</div>
+      <div class="section-title">Últimas Guerras</div>
+    </div>
+    <button class="collapsible-btn reveal" id="hist-toggle" onclick="toggleSection('hist-body','hist-toggle')" style="border-color:rgba(192,57,43,0.3);">
+      <span>Ver historial de guerras</span><span class="arrow">▼</span>
+    </button>
+  </div>
+  <div class="collapsible-content" id="hist-body">
+    <div class="wrap" style="padding-top:8px;">
+      <div id="hist-container">
+        <div style="color:#7a8a9a;padding:20px;">Cargando...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 <section style="position:relative;z-index:1;background:linear-gradient(135deg,rgba(52,98,219,0.07),rgba(52,98,219,0.02));border-top:1px solid rgba(52,98,219,0.15);border-bottom:1px solid rgba(52,98,219,0.15);" id="capital">
   <div class="wrap" style="padding-bottom:0;">
     <div class="reveal">
@@ -714,6 +733,49 @@ function renderCapital(data) {
     </table>`;
 }
 
+function renderWarlog(data) {
+  const c = document.getElementById('hist-container');
+  if (!data || !data.items || !data.items.length) {
+    c.innerHTML = '<div style="color:#7a8a9a;padding:20px;">No hay historial disponible. Asegúrate de que el log de guerras del clan está en público.</div>';
+    return;
+  }
+  const rows = data.items.map((w, i) => {
+    const us = w.clan, them = w.opponent;
+    const usStars = us.stars || 0;
+    const themStars = them.stars || 0;
+    const usPct = (us.destructionPercentage || 0).toFixed(1);
+    const themPct = (them.destructionPercentage || 0).toFixed(1);
+    let result, resultStyle;
+    if (w.result === 'win') {
+      result = '✅ VICTORIA';
+      resultStyle = 'color:#2ecc71;background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.3);';
+    } else if (w.result === 'lose') {
+      result = '❌ DERROTA';
+      resultStyle = 'color:#e74c3c;background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);';
+    } else {
+      result = '🤝 EMPATE';
+      resultStyle = 'color:#3498db;background:rgba(52,152,219,0.1);border:1px solid rgba(52,152,219,0.3);';
+    }
+    const date = w.endTime ? (() => {
+      const s = w.endTime;
+      return `${s.slice(6,8)}/${s.slice(4,6)}/${s.slice(0,4)}`;
+    })() : '';
+    return `<div style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(192,57,43,0.1);flex-wrap:wrap;">
+      <span style="font-family:monospace;font-size:12px;color:#5a6a7a;width:24px;text-align:right;flex-shrink:0;">${i+1}</span>
+      <span style="padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:1px;border-radius:3px;flex-shrink:0;${resultStyle}">${result}</span>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:700;color:#e8f0f8;">vs ${them.name}</div>
+        <div style="font-size:11px;color:#5a6a7a;margin-top:2px;">${w.teamSize}v${w.teamSize} · ${date}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-family:monospace;font-size:14px;font-weight:700;color:#e8c04a;">⭐ ${usStars} <span style="color:#5a6a7a;font-size:12px;">vs</span> ${themStars}</div>
+        <div style="font-size:11px;color:#5a6a7a;margin-top:2px;">${usPct}% vs ${themPct}%</div>
+      </div>
+    </div>`;
+  }).join('');
+  c.innerHTML = `<div style="padding:4px 0;">${rows}</div>`;
+}
+
 async function loadAll() {
   document.getElementById('loader').classList.remove('hidden');
   document.getElementById('error-banner').style.display = 'none';
@@ -726,6 +788,13 @@ async function loadAll() {
     const war = await apiFetch('/api/war');
     renderWar(war);
     renderAttackers(war);
+    setLoader('CARGANDO HISTORIAL...');
+    try {
+      const warlog = await apiFetch('/api/warlog');
+      renderWarlog(warlog);
+    } catch(e) {
+      document.getElementById('hist-container').innerHTML = '<div style="color:#7a8a9a;padding:20px;">Log de guerra privado o no disponible.</div>';
+    }
     setLoader('CARGANDO CAPITAL...');
     const capital = await apiFetch('/api/capital');
     renderCapital(capital);
@@ -745,13 +814,13 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 const sectionColors = {
-  miembros: 'active-gold',
-  guerra: 'active-red',
-  capital: 'active-blue',
-  donaciones: 'active-purple',
-  atacantes: 'active-orange',
-  normas: 'active-green',
-  discord: 'active-discord'
+  miembros:   { href: 'miembros', cls: 'active-gold' },
+  donaciones: { href: 'miembros', cls: 'active-gold' },
+  guerra:     { href: 'guerra',   cls: 'active-red'  },
+  atacantes:  { href: 'guerra',   cls: 'active-red'  },
+  historial:  { href: 'guerra',   cls: 'active-red'  },
+  capital:    { href: 'capital',  cls: 'active-blue' },
+  normas:     { href: 'normas',   cls: 'active-green'},
 };
 
 window.addEventListener('scroll', () => {
@@ -759,12 +828,12 @@ window.addEventListener('scroll', () => {
   document.querySelectorAll('section[id]').forEach(s => {
     if (window.scrollY >= s.offsetTop - 100) cur = s.id;
   });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    const href = a.getAttribute('href')?.replace('#','');
-    const activeClass = sectionColors[href] || 'active-gold';
-    // Remove all active classes
-    Object.values(sectionColors).forEach(cls => a.classList.remove(cls));
-    if (href === cur) a.classList.add(activeClass);
+  const active = sectionColors[cur];
+  document.querySelectorAll('.nav-links a:not(.nav-discord)').forEach(a => {
+    ['active-gold','active-red','active-blue','active-green','active-purple','active-orange'].forEach(cls => a.classList.remove(cls));
+    if (active && a.getAttribute('href') === '#' + active.href) {
+      a.classList.add(active.cls);
+    }
   });
 });
 
