@@ -1,70 +1,59 @@
-const express = require(‘express’);
-const cors = require(‘cors’);
-const fetch = require(‘node-fetch’);
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const TOKEN = process.env.COC_TOKEN || ‘’;
-const CLAN_TAG = ‘%232CR9U8VCO’;
-const COC_BASE = ‘https://api.clashofclans.com/v1’;
+const TOKEN = process.env.COC_TOKEN;
+const CLAN_TAG = '%232CR9U8VCO';
+const COC_BASE = 'https://api.clashofclans.com/v1';
 
 app.use(cors());
-app.use(express.static(‘public’));
+app.use(express.static('public'));
+
+// CACHE
+let cache = null;
+let lastFetch = 0;
+const CACHE_TIME = 60000; // 60s
 
 async function cocFetch(path) {
-const res = await fetch(`${COC_BASE}${path}`, {
-headers: { ‘Authorization’: `Bearer ${TOKEN}` }
-});
-if (!res.ok) throw new Error(`CoC API error: ${res.status}`);
-return res.json();
+  const res = await fetch(`${COC_BASE}${path}`, {
+    headers: { Authorization: `Bearer ${TOKEN}` }
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`${res.status} - ${text}`);
+  }
+
+  return res.json();
 }
 
-// Clan info
-app.get(’/api/clan’, async (req, res) => {
-try {
-const data = await cocFetch(`/clans/${CLAN_TAG}`);
-res.json(data);
-} catch (e) {
-res.status(500).json({ error: e.message });
-}
-});
+// ENDPOINT ÚNICO
+app.get('/api/all', async (req, res) => {
+  const now = Date.now();
 
-// Current war
-app.get(’/api/war’, async (req, res) => {
-try {
-const data = await cocFetch(`/clans/${CLAN_TAG}/currentwar`);
-res.json(data);
-} catch (e) {
-res.status(500).json({ error: e.message });
-}
-});
+  if (cache && now - lastFetch < CACHE_TIME) {
+    return res.json(cache);
+  }
 
-// Capital raid seasons
-app.get(’/api/capital’, async (req, res) => {
-try {
-const data = await cocFetch(`/clans/${CLAN_TAG}/capitalraidseasons?limit=1`);
-res.json(data);
-} catch (e) {
-res.status(500).json({ error: e.message });
-}
-});
+  try {
+    const [clan, war, capital, warlog] = await Promise.all([
+      cocFetch(`/clans/${CLAN_TAG}`),
+      cocFetch(`/clans/${CLAN_TAG}/currentwar`),
+      cocFetch(`/clans/${CLAN_TAG}/capitalraidseasons?limit=1`),
+      cocFetch(`/clans/${CLAN_TAG}/warlog?limit=10`)
+    ]);
 
-// War log
-app.get(’/api/warlog’, async (req, res) => {
-try {
-const data = await cocFetch(`/clans/${CLAN_TAG}/warlog?limit=10`);
-res.json(data);
-} catch (e) {
-res.status(500).json({ error: e.message });
-}
+    cache = { clan, war, capital, warlog };
+    lastFetch = now;
+
+    res.json(cache);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
-const server = app.listen(PORT, () => console.log(`Servidor clan activo en puerto ${PORT}`));
-
-server.on(‘error’, (err) => {
-if (err.code === ‘EADDRINUSE’) {
-console.log(`Puerto ${PORT} ocupado, reintentando...`);
-setTimeout(() => { server.close(); server.listen(PORT); }, 3000);
-}
+app.listen(PORT, () => {
+  console.log(`Servidor activo en puerto ${PORT}`);
 });
