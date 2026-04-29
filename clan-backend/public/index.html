@@ -626,7 +626,7 @@ function toggleSection(contentId, btnId) {
   btn.classList.toggle('open');
 }
 
-const API = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '';
+const API = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://clan-coc-web.onrender.com';
 
 function thClass(th) {
   const map = {16:'th-16',15:'th-15',14:'th-14',13:'th-13',12:'th-12',11:'th-11',10:'th-10',9:'th-9',8:'th-8'};
@@ -839,3 +839,6 @@ window.addEventListener('scroll', () => {
 
 loadAll();
 </script>
+
+</body>
+</html>
