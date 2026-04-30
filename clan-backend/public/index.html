@@ -910,7 +910,7 @@ async function openPlayerModal(tag) {
   document.getElementById('modal-achievements').innerHTML = '';
 
   try {
-    const data = await apiFetch('/api/player/' + tag);
+    const data = await apiFetch('/api/player/' + tag.replace('#', ''));
 
     document.getElementById('modal-name').textContent = data.name;
     document.getElementById('modal-tag').textContent = data.tag;
